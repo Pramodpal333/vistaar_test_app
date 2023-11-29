@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vistaar_test_app/widgets/dialog.dart';
 
 import '../../data/dummy_data.dart';
 import '../../model/meeting_model.dart';
@@ -10,7 +11,8 @@ class MeetingListView extends StatelessWidget {
   // Function to scroll the ListView to the right
   void _scrollToRight() {
     _scrollController.animateTo(
-      _scrollController.offset + Get.width*0.8, // Adjust the scroll distance as needed
+      _scrollController.offset + Get.width * 0.8,
+      // Adjust the scroll distance as needed
       duration: Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
@@ -19,7 +21,8 @@ class MeetingListView extends StatelessWidget {
   // Function to scroll the ListView to the left
   void _scrollToLeft() {
     _scrollController.animateTo(
-      _scrollController.offset - Get.width*0.8, // Adjust the scroll distance as needed
+      _scrollController.offset - Get.width * 0.8,
+      // Adjust the scroll distance as needed
       duration: Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
@@ -58,9 +61,8 @@ class MeetingListView extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     height: h * 0.4, // Adjust the height as needed
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey.shade100
-                    ),
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade100),
                     child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
@@ -83,14 +85,20 @@ class MeetingListView extends StatelessWidget {
                                 Flexible(
                                   child: Text(
                                     '${meeting.time}',
-                                    style:  TextStyle(color: Colors.black,fontSize: w*0.035,),
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: w * 0.035,
+                                    ),
                                   ),
                                 ),
-                               // const SizedBox(width:5 ,),
+                                // const SizedBox(width:5 ,),
                                 Expanded(
                                   child: Text(
                                     '${meeting.docName}',
-                                    style: TextStyle(color: Colors.black,fontSize: w*0.035,fontWeight: FontWeight.w500),
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: w * 0.035,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                                 Flexible(
@@ -98,8 +106,25 @@ class MeetingListView extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      IconButton(onPressed: (){}, icon: Icon(Icons.edit_note,size: w*0.06,)),
-                                      IconButton(onPressed: (){}, icon: Icon(Icons.delete_outline_outlined,size: w*0.06,)),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.edit_note,
+                                            size: w * 0.06,
+                                          )),
+                                      IconButton(
+                                          onPressed: () {
+                                            confirmDialog(context,
+                                                description:
+                                                    "Delete the meeting of ${meeting.docName} on ${meeting.time}",
+                                            onConfirm: (){},
+                                              onCancel: ()=>Get.back()
+                                            );
+                                          },
+                                          icon: Icon(
+                                            Icons.delete_outline_outlined,
+                                            size: w * 0.06,
+                                          )),
                                     ],
                                   ),
                                 ),
@@ -120,29 +145,36 @@ class MeetingListView extends StatelessWidget {
             bottom: 10,
             left: 0,
             right: 0,
-            child:
-            Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 10,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3), // Set the border radius to 0 for a square shape
+                      borderRadius: BorderRadius.circular(
+                          3), // Set the border radius to 0 for a square shape
                     ),
                   ),
                   onPressed: _scrollToLeft,
-                  child: const Icon(Icons.arrow_back_ios,color: Colors.black54,),
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black54,
+                  ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 10,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3), // Set the border radius to 0 for a square shape
+                      borderRadius: BorderRadius.circular(
+                          3), // Set the border radius to 0 for a square shape
                     ),
                   ),
                   onPressed: _scrollToRight,
-                  child: const Icon(Icons.arrow_forward_ios,color: Colors.black54,),
+                  child: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.black54,
+                  ),
                 ),
               ],
             ))

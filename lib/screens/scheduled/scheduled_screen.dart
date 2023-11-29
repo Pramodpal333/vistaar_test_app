@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vistaar_test_app/controllers/scheduled/scheduled_controller.dart';
 import 'package:vistaar_test_app/screens/scheduled/meeting_list.dart';
+import 'package:vistaar_test_app/widgets/dialog.dart';
 import 'package:vistaar_test_app/widgets/textfeild.dart';
 
 class ScheduleScreen extends StatelessWidget {
@@ -117,9 +118,9 @@ class ScheduleScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Handle the button press
-                    if (_formKey.currentState!.validate()) {
-                      controller.scheduleMeeting(context);
-                    }
+                    // if (_formKey.currentState!.validate()) {
+                    //   controller.scheduleMeeting(context);
+                    // }
                   },
                   child: Text('Schedule Meeting'),
                 ),

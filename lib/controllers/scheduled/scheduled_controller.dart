@@ -18,6 +18,7 @@ class ScheduledController extends GetxController{
   final RxBool isOnlineMeeting = true.obs;
   Rx<DateTime>? selectedDate;
 
+
   Utils utils = Utils();
 
   //function to show date picker dialog
@@ -77,4 +78,16 @@ class ScheduledController extends GetxController{
     }
   }
 
+
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getUpcommingList();
+  }
+
+  void getUpcommingList() {
+
+  }
 }
